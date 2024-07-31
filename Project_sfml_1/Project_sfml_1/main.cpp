@@ -1,8 +1,8 @@
-/*#include <iostream>
+#include <iostream>
 #include <cmath>
 #include <string>
 #include <vector>
-#include <SFML/Graphics.hpp>*/
+#include <SFML/Graphics.hpp>
 #include "OwnGCF.h"
 
 //Просто комментарий для гита Жопа коня
@@ -436,7 +436,6 @@ public:
 HorizontalSlider<int> sliderV(V, 1000, 500, 2000, 200, Vector2f(620, 250));
 int main()
 {
-    V = 1000;
     
 
     window.setVerticalSyncEnabled(true);
@@ -496,6 +495,7 @@ int main()
             vec[i].move();
             if(frame%1==0)window.draw(vec[i].getShape());
         }
+        sliderV.Draw();
         window.display();
         clock.restart();
     }

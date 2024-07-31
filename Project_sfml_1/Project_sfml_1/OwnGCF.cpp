@@ -1,5 +1,5 @@
-#pragma once
 #include "OwnGCF.h"
+RenderWindow window(VideoMode(1000, 600), L"газ2Д", Style::Default);
 
 RectangleShape InitialRectangleShape(Vector2f size, Color color, Vector2f position) {
     RectangleShape shape(size);
@@ -100,7 +100,7 @@ bool isPressButtonRec(cellka press, RectangleShape button) {
 
 
 
-    template<isdig dig>
+    /*template<isdig dig>
     string RoundDig(dig d, double precision) {
         if (isInteger(d)) return to_string(d);
         int n = (int)(1.0 / precision);
@@ -228,7 +228,7 @@ bool isPressButtonRec(cellka press, RectangleShape button) {
         window.draw(SliderButton);
         window.draw(textvalue);
         window.draw(text);
-    }
+    }*/
 
 
 
