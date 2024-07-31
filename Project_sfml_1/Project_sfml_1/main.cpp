@@ -5,7 +5,7 @@
 #include <SFML/Graphics.hpp>*/
 #include "OwnGCF.h"
 
-//Просто комментарий для гита
+//Просто комментарий для гита Жопа коня
 
 using namespace std;
 using namespace sf;

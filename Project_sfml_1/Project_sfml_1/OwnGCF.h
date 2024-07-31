@@ -8,7 +8,7 @@
 using namespace std;
 using namespace sf;
 
-// И это тоже комментарий для гита
+// И это тоже комментарий для гита Бла
 
 RenderWindow window(VideoMode(1000, 600), L"газ2Д", Style::Default);
 
