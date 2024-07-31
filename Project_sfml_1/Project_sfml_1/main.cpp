@@ -5,6 +5,8 @@
 #include <SFML/Graphics.hpp>*/
 #include "OwnGCF.h"
 
+//Просто комментарий для гита
+
 using namespace std;
 using namespace sf;
 
