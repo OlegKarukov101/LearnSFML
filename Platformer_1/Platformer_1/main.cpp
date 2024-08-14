@@ -1,4 +1,4 @@
-#include "OwnGCF.h"
+﻿#include "OwnGCF.h"
 
 using namespace std;
 using namespace sf;
@@ -189,6 +189,7 @@ int main()
     //tugtjgutur
     //capusta 3
     //main capusta
+    //хутор
     Clock clock;
     double time = clock.getElapsedTime().asSeconds();
 
