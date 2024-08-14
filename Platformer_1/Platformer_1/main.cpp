@@ -189,7 +189,7 @@ int main()
     //tugtjgutur
     //capusta 3
     //main capusta
-    //хутор
+    //хутор хуторный хуторок
     Clock clock;
     double time = clock.getElapsedTime().asSeconds();
 
