@@ -149,7 +149,7 @@ int main()
     if (fontImpact2.loadFromFile("impact2.ttf")) cout << "YEES fontImpact2\n";
     Texture texture1;
     //if (texture1.loadFromFile("texture1.jpeg",IntRect(10,10,128,128))) cout << "YEEES texture \n";
-    if (texture1.loadFromFile("texture2.jpeg",IntRect(0,10,128,128))) cout << "YEEES texture \n";
+    if (texture1.loadFromFile("texture5.jpeg")) cout << "YEEES texture \n";
     //if (texture1.loadFromFile("texture1.jpeg",IntRect(10,10,128,128))) cout << "YEEES texture \n";
     texture1.setSmooth(true);
 
@@ -190,7 +190,7 @@ int main()
     //capusta 3
     //main capusta
     Clock clock;
-    double time = clock.getElapsedTime().asSeconds();
+    float time = (float)clock.getElapsedTime().asSeconds();
 
     int frame = 0;
     while (window.isOpen())
