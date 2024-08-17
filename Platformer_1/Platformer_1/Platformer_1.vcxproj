@@ -137,6 +137,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="OwnGCF.cpp" />
+    <ClCompile Include="Physics.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OwnGCF.h" />
