@@ -1,6 +1,9 @@
 #pragma once
 #include "OwnGCF.h"
-RenderWindow window(VideoMode(1600, 900), L"Платформер", Style::Default);
+#include "Graphic.h"
+
+Graphic graphic;
+RenderWindow window(VideoMode(graphic.screenX, graphic.screenY), L"Платформер", Style::Default);
 
 
 
