@@ -28,7 +28,7 @@ private:
 };
 
 static RenderWindow& window = RenderWindowSingle::Instance().Get();*/
-extern RenderWindow window;
+//extern RenderWindow window;
 struct cellka { //cell-€чейка, клетка, а cellka чисто € придумал - клеточка, €чейка.
     int i = 0, j = 0;
     cellka() {}
@@ -45,6 +45,7 @@ bool isPressButtonRec(cellka press, RectangleShape button);
 
 class RecButton {
 private:
+    shared_ptr<RenderWindow> window;
     RectangleShape shape;
     Color color;
     bool detection = false;
@@ -58,8 +59,8 @@ private:
     string s = "";
     Font font;
 public:
-    RecButton(Vector2f size, Vector2f position, Color color);
-    RecButton(Vector2f size, Vector2f position, Color color, string str, Font font);
+    RecButton(shared_ptr<RenderWindow> window, Vector2f size, Vector2f position, Color color);
+    RecButton(shared_ptr<RenderWindow> window, Vector2f size, Vector2f position, Color color, string str, Font font);
     void setText(string str, Font font, double CharacterSize, Color textcolor, double WidthThikness, Color colorThikness);
     void setTextPress(string str, double CharacterSize, Color textcolor, double WidthThikness, Color colorThikness);
     void setDetect(Color colorDetect);
@@ -75,43 +76,6 @@ public:
 };
 
 
-/*template<typename dig>
-concept isdig = requires(dig d) {
-    d + d;
-    d* d;
-};
-template<isdig dig>
-string RoundDig(dig d, double precision);
-template<isdig dig>
-bool isInteger(dig d);
-template<isdig dig>
-class HorizontalSlider {
-private:
-    RectangleShape diaposon;
-    RectangleShape SliderButton;
-    Text textvalue;
-    Font font;
-    dig* quantity;
-    double leftX, rightX, constYslider;
-    double coefficient;
-    dig diaposonvalue, minvalue, maxvalue;
-    dig value;
-    Text text;
-    Font textfont;
-    string s;
-public:
-    double getValue();
-    HorizontalSlider(dig& quantity, dig basevalue, dig minvalue, dig maxvalue, double lenghtdiaposon, double width, Vector2f posdiaposon, Color coldiaposon, Vector2f sizeslider, Color colslider, Font font);
-    HorizontalSlider(dig& quantity, dig basevalue, dig minvalue, dig maxvalue, double lenghtdiaposon, Vector2f posdiaposon);
-    void setText(string str, Font font, double CharacterSize, Color textcolor, double WidthThikness, Color colorThikness);
-    RectangleShape getButtonDiaposon();
-    RectangleShape getButtonSlider();
-    Text getText();
-    void setXSlider(dig Xslider);
-    void setValue(dig мvalue);
-    void isPress();
-    void Draw();
-};*/
 
 
 template<typename dig>
@@ -126,6 +90,7 @@ bool isInteger(dig d);
 template<isdig dig>
 class HorizontalSlider {
 private:
+    shared_ptr<RenderWindow> window;
     RectangleShape diapason;
     RectangleShape SliderButton;
     Text textvalue;
@@ -140,7 +105,8 @@ private:
     string s;
 public:
     dig getValue() { return value; }
-    HorizontalSlider(dig& quantity, dig basevalue, dig minvalue, dig maxvalue, double lenghtdiaposon, double width, Vector2f posdiaposon, Color coldiaposon, Vector2f sizeslider, Color colslider, Font font) {
+    HorizontalSlider(shared_ptr<RenderWindow> window, dig& quantity, dig basevalue, dig minvalue, dig maxvalue, double lenghtdiaposon, double width, Vector2f posdiaposon, Color coldiaposon, Vector2f sizeslider, Color colslider, Font font) {
+        this->window = window;
         this->quantity = &quantity;
         *(this->quantity) = basevalue;
         this->minvalue = minvalue;
@@ -159,7 +125,8 @@ public:
         textvalue = InitialText(textvalue, Vector2f(posdiaposon.x + lenghtdiaposon / 2 + 10, constYslider - 10), Color::Green, 4, Color::Black);
         textvalue.setStyle(Text::Bold);
     }
-    HorizontalSlider(dig& quantity, dig basevalue, dig minvalue, dig maxvalue, double lenghtdiaposon, Vector2f posdiaposon) {
+    HorizontalSlider(shared_ptr<RenderWindow> window, dig& quantity, dig basevalue, dig minvalue, dig maxvalue, double lenghtdiaposon, Vector2f posdiaposon) {
+        this->window = window;
         this->quantity = &quantity;
         *(this->quantity) = basevalue;
         this->minvalue = minvalue;
@@ -216,15 +183,15 @@ public:
     }
     void isPress() {
         //вынести гет позишен мышки в переменную
-        if ((isPressButtonRec(cellka(Mouse::getPosition(window).y, Mouse::getPosition(window).x), diapason)) || (isPressButtonRec(cellka(Mouse::getPosition(window).y, Mouse::getPosition(window).x), SliderButton))) {
-            (*this).setXSlider(Mouse::getPosition(window).x);
+        if ((isPressButtonRec(cellka(Mouse::getPosition(*window).y, Mouse::getPosition(*window).x), diapason)) || (isPressButtonRec(cellka(Mouse::getPosition(*window).y, Mouse::getPosition(*window).x), SliderButton))) {
+            (*this).setXSlider(Mouse::getPosition(*window).x);
         }
     }
     void Draw() {
-        window.draw(diapason);
-        window.draw(SliderButton);
-        window.draw(textvalue);
-        window.draw(text);
+        *window.draw(diapason);
+        *window.draw(SliderButton);
+        *window.draw(textvalue);
+        *window.draw(text);
     }
 
 };

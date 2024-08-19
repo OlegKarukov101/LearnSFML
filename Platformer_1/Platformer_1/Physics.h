@@ -1,15 +1,25 @@
 #pragma once
-#include <iostream>
 
-class Physics {
+/*class Physics {
 public:
-	const float speedX = 3;
-	const float maxSpeedX = 12;
+	static float Speedx()         { return 3;    }
+	static float maxSpeedx()      { return 12;   }
 
-	const float airFriction = 0.1f;
-	const float groundFriction = 0.3f;
-	
-	const float jumpForce = 7;
-	const float gravity = 0.4f;
-	const float maxSpeedY = 16;
-};
+	static float airFriction()    { return 0.1f; }
+	static float groundFriction() { return 0.3f; }
+
+	static float jumpSpeed()      { return 7;    }
+	static float gravity()        { return 0.4;  }
+	static float maxSpeedy()      { return 16;   }
+};*/
+namespace Physics {
+	const float Speedx = 3;
+	const float maxSpeedx = 12;
+
+	const float airFriction = 0.1;
+	const float groundFriction = 0.3;
+
+	const float jumpSpeed = 14;
+	const float gravity = 0.4;
+	const float maxSpeedy = 16;
+}

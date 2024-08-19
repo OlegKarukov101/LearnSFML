@@ -1,6 +1,6 @@
 #pragma once
 #include "OwnGCF.h"
-RenderWindow window(VideoMode(1600, 900), L"Платформер", Style::Default);
+//RenderWindow window(VideoMode(1600, 900), L"Платформер", Style::Default);
 
 
 
@@ -36,11 +36,13 @@ bool isPressButtonRec(cellka press, RectangleShape button) {
     return false;
 }
 
-RecButton::RecButton(Vector2f size, Vector2f position, Color color) {
+RecButton::RecButton(shared_ptr<RenderWindow> window, Vector2f size, Vector2f position, Color color) {
+    this->window = window;
     shape = InitialRectangleShape(size, color, position);
     this->color = color;
 }
-RecButton::RecButton(Vector2f size, Vector2f position, Color color, string str, Font font) {
+RecButton::RecButton(shared_ptr<RenderWindow> window, Vector2f size, Vector2f position, Color color, string str, Font font) {
+    this->window = window;
     this->font = font;
     shape = InitialRectangleShape(size, color, position);
     this->color = color;
@@ -81,7 +83,7 @@ void RecButton::setDetect() {
 void RecButton::turnOnDetection() { detection = true; }
 void RecButton::turnOffDetection() { detection = false; }
 bool RecButton::isIndicate() {
-    cellka press = cellka(Mouse::getPosition(window).y, Mouse::getPosition(window).x);
+    cellka press = cellka(Mouse::getPosition(*window).y, Mouse::getPosition(*window).x);
     if (abs(press.i - shape.getPosition().y) < shape.getSize().y / 2 && abs(press.j - shape.getPosition().x) < shape.getSize().x / 2) {
         return true;
     }
@@ -110,12 +112,12 @@ void RecButton::Draw() {
     else
         if (detectpress && press) shape.setFillColor(colorPress);
         else shape.setFillColor(color);
-    window.draw(shape);
+    (*window).draw(shape);
     if (press && detecttext) {
-        window.draw(textpress);
+        (*window).draw(textpress);
     }
     else if (s != "") {
-        window.draw(text);
+        (*window).draw(text);
     }
 }
 
