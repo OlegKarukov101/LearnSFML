@@ -140,7 +140,10 @@
     <ClCompile Include="Physics.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Control.h" />
+    <ClInclude Include="ObjectMapa.h" />
     <ClInclude Include="OwnGCF.h" />
+    <ClInclude Include="ParametrsGame.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

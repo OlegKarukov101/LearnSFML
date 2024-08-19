@@ -96,20 +96,18 @@ public:
         Vector2f locTR = ReCountLocalPos(loc, Vector2f(+size.x, -size.y));
         Vector2f locBL = ReCountLocalPos(loc, Vector2f(-size.x, +size.y));
         Vector2f locBR = ReCountLocalPos(loc, Vector2f(+size.x, +size.y));
-        if (locBL.y == 99) {
-            int a =0 ;
-        }
-        bool CollisionTL_T = mapa[glTL.i - 1][glTL.j].getFillColor() == Color(255, 255, 255) && (locTL.y+speed.y) < 1; 
-        bool CollisionTL_L = mapa[glTL.i][glTL.j - 1].getFillColor() == Color(255, 255, 255) && (locTL.x+speed.x) < 1;
+        
+        bool CollisionTL_T = mapa[glTL.i - 1][glTL.j].getFillColor() == Color(255, 255, 255) && (locTL.y+speed.y) < 0; 
+        bool CollisionTL_L = mapa[glTL.i][glTL.j - 1].getFillColor() == Color(255, 255, 255) && (locTL.x+speed.x) < 0;
 
-        bool CollisionTR_T = mapa[glTR.i - 1][glTR.j].getFillColor() == Color(255, 255, 255) && (locTR.y+speed.y) < 1;
-        bool CollisionTR_R = mapa[glTR.i][glTR.j + 1].getFillColor() == Color(255, 255, 255) && (Pr::sz-locTR.x-speed.x) < 1;
+        bool CollisionTR_T = mapa[glTR.i - 1][glTR.j].getFillColor() == Color(255, 255, 255) && (locTR.y+speed.y) < 0;
+        bool CollisionTR_R = mapa[glTR.i][glTR.j + 1].getFillColor() == Color(255, 255, 255) && (locTR.x+speed.x-Pr::sz) > 0;
 
-        bool CollisionBL_B = mapa[glBL.i + 1][glBL.j].getFillColor() == Color(255, 255, 255) && (Pr::sz-locBL.y-speed.y) < 1;
-        bool CollisionBL_L = mapa[glBL.i][glBL.j - 1].getFillColor() == Color(255, 255, 255) && (locBL.x+speed.x) < 1;
+        bool CollisionBL_B = mapa[glBL.i + 1][glBL.j].getFillColor() == Color(255, 255, 255) && (locBL.y+speed.y-Pr::sz) > 0;
+        bool CollisionBL_L = mapa[glBL.i][glBL.j - 1].getFillColor() == Color(255, 255, 255) && (locBL.x+speed.x) < 0;
 
-        bool CollisionBR_B = mapa[glBR.i + 1][glBR.j].getFillColor() == Color(255, 255, 255) && (Pr::sz-locBR.y-speed.y) < 1;
-        bool CollisionBR_R = mapa[glBR.i][glBR.j + 1].getFillColor() == Color(255, 255, 255) && (Pr::sz-locBR.x) < 1;
+        bool CollisionBR_B = mapa[glBR.i + 1][glBR.j].getFillColor() == Color(255, 255, 255) && (locBR.y+speed.y-Pr::sz) > 0;
+        bool CollisionBR_R = mapa[glBR.i][glBR.j + 1].getFillColor() == Color(255, 255, 255) && (locBR.x+speed.x-Pr::sz) > 0;
 
         bool bottomCollision = CollisionBL_B || CollisionBR_B;
         bool topCollision = CollisionTL_T || CollisionTR_T;
@@ -120,8 +118,12 @@ public:
         }
         else isGround = false;
 
-        if (rightCollision && speed.x > 0) { speed.x = 0; }
-        if (leftCollision && speed.x < 0) { speed.x = 0; }
+        if (rightCollision && speed.x > 0) { 
+            speed.x = 0; 
+        }
+        if (leftCollision && speed.x < 0) { 
+            speed.x = 0; 
+        }
         if (topCollision && speed.y < 0) { speed.y = 0; }
         if (isGround && speed.y > 0) { speed.y = 0; };
 
@@ -129,7 +131,7 @@ public:
         if (leftWall && (localpos.x+speed.x) < size.x && speed.x<0) { speed.x = -localpos.x+size.x; }
         if (topWall && (localpos.y+speed.y) < size.y && speed.y<0) { speed.y = -localpos.y+size.y; }
         if (isGround && speed.y > 0) { speed.y = (Pr::sz-localpos.y)-size.y; };*/
-        cout << locBL.y <<" "<<locBR.y<< endl;
+        
     }
     Vector2f ReCountLocalPos(Vector2f localpos, Vector2f speed) {
         int sz = Pr::sz;
